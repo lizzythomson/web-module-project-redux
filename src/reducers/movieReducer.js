@@ -7,12 +7,11 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  console.log('Passes action into reducer.', action);
   switch (action.type) {
     case DELETE_MOVIE:
-      console.log('Execute delete action.');
       return {
-        movies: state.movies.filter((item) => action.payload !== item.id),
+        ...state,
+        movies: state.movies.filter((item) => action.payload.id !== item.id),
       };
     case ADD_MOVIE:
       console.log('movie', action.payload);
@@ -21,11 +20,11 @@ const reducer = (state = initialState, action) => {
         movies: [
           ...movies,
           {
-            title: action.payload,
-            director: action.payload,
-            genre: action.payload,
-            metascore: action.payload,
-            description: action.payload,
+            title: action.payload.title,
+            director: action.payload.director,
+            genre: action.payload.genre,
+            metascore: action.payload.metascore,
+            description: action.payload.description,
           },
         ],
       };

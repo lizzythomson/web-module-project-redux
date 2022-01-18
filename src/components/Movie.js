@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { deleteMovie } from '../actions/movieActions';
 
 const Movie = (props) => {
+  console.log('Props', props);
   const { id } = useParams();
   const { push } = useHistory();
 
@@ -56,7 +57,11 @@ const Movie = (props) => {
                 <span className='m-2 btn btn-dark'>Favorite</span>
                 <span className='delete'>
                   <input
-                    onClick={handleDelete}
+                    onClick={() => {
+                      console.log('Movie', movie);
+                      handleDelete(movie);
+                      push('/movies');
+                    }}
                     type='button'
                     className='m-2 btn btn-danger'
                     value='Delete'
